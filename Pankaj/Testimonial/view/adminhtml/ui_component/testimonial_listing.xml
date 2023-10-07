@@ -1,0 +1,113 @@
+<?xml version="1.0" ?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">testimonial_listing.testimonial_listing_data_source</item>
+		</item>
+	</argument>
+	<settings>
+		<spinner>testimonial_columns</spinner>
+		<deps>
+			<dep>testimonial_listing.testimonial_listing_data_source</dep>
+		</deps>
+		<buttons>
+			<button name="add">
+				<url path="*/*/new"/>
+				<class>primary</class>
+				<label translate="true">Add New</label>
+			</button>
+		</buttons>
+	</settings>
+	<dataSource name="testimonial_listing_data_source" component="Magento_Ui/js/grid/provider">
+		<settings>
+			<storageConfig>
+				<param name="indexField" xsi:type="string">entity_id</param>
+			</storageConfig>
+			<updateUrl path="mui/index/render"/>
+		</settings>
+		<aclResource>Pankaj_Testimonial::testimonial_list</aclResource>
+		<dataProvider name="testimonial_listing_data_source" class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+			<settings>
+				<requestFieldName>id</requestFieldName>
+				<primaryFieldName>entity_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<listingToolbar name="listing_top">
+		<settings>
+			<sticky>true</sticky>
+		</settings>
+		<bookmark name="bookmarks"/>
+		<columnsControls name="columns_controls"/>
+		<filters name="listing_filters"/>
+		<paging name="listing_paging"/>
+	</listingToolbar>
+	<columns name="testimonial_columns">
+		<column name="entity_id" sortOrder="10">
+			<settings>
+				<filter>text</filter>
+				<sorting>asc</sorting>
+				<label translate="true">ID</label>
+			</settings>
+		</column>
+		<column name="store_id" sortOrder="20">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Store ID</label>
+			</settings>
+		</column>
+		<column name="customer_id" sortOrder="30">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Customer ID</label>
+			</settings>
+		</column>
+		<column name="title" sortOrder="40">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Title</label>
+			</settings>
+		</column>
+		<column name="designation" sortOrder="50">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Designation</label>
+			</settings>
+		</column>
+		<column name="content" sortOrder="60">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Content</label>
+			</settings>
+		</column>
+		<column name="image" sortOrder="70">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Image</label>
+			</settings>
+		</column>
+		<column name="status" class="Pankaj\Testimonial\Ui\Component\Listing\Columns\Status" sortOrder="80">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Status</label>
+			</settings>
+		</column>
+		<column name="publish_date" sortOrder="90">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Publish Date</label>
+			</settings>
+		</column>
+		<column name="updated_at" sortOrder="100">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Updated At</label>
+			</settings>
+		</column>
+		<actionsColumn name="actions" class="Pankaj\Testimonial\Ui\Component\Listing\Columns\Actions" sortOrder="110">
+			<settings>
+				<indexField>entity_id</indexField>
+			</settings>
+		</actionsColumn>
+	</columns>
+</listing>

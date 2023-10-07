@@ -1,0 +1,19 @@
+<?php
+/** @var \Pankaj\Testimonial\Block\Template $block */
+?>
+
+<div class="testimonial">
+    <h1><?=$block->getName()?></h1>
+
+<?php foreach ($block->getTestimonialCollection() as $testimonial) : ?>  
+<div class="container">
+    <img src="bandmember.jpg" alt="Avatar" style="width:90px">
+    <p><span> <?= $block->getCustomerName($testimonial->getCustomerId())?>.</span> <?= $testimonial->getDesignation() ?>.</p>
+    <p><?= $testimonial->getTitle() ?></p>
+    <?= $testimonial->getContent() ?>
+</div>
+<?php endforeach; ?>
+    
+</div>
+
+<?= ($block->getChildHtml('pager'))??$block->getChildHtml('pager'); ?>

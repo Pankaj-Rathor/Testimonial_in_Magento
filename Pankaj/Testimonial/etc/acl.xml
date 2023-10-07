@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Pankaj_Testimonial::testimonial" title="Testimonial" sortOrder="99">
+                    <resource id="Pankaj_Testimonial::testimonial_list" title="Testimonial List" sortOrder="10"></resource>
+                    <resource id="Pankaj_Testimonial::testimonial_form" title="Testimonial form" sortOrder="20"></resource>
+                </resource>
+
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Pankaj_Testimonial::config" title="Configuration"/>
+                        </resource>
+                    </resource>
+                </resource>
+
+            </resource>
+        </resources>
+    </acl>
+</config>
