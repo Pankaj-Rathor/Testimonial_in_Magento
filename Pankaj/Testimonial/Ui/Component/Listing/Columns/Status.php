@@ -6,18 +6,15 @@ class Status extends \Magento\Ui\Component\Listing\Columns\Column
     /**
      * @param \Magento\Framework\View\Element\UiComponent\ContextInterface $context
      * @param \Magento\Framework\View\Element\UiComponentFactory $uiComponentFactory
-     * @param \Magento\Framework\UrlInterface $urlBuilder
      * @param array $components
      * @param array $data
      */
     public function __construct(
         \Magento\Framework\View\Element\UiComponent\ContextInterface $context,
         \Magento\Framework\View\Element\UiComponentFactory $uiComponentFactory,
-        \Magento\Framework\UrlInterface $urlBuilder,
         array $components = [],
         array $data = []
     ) {
-        $this->urlBuilder = $urlBuilder;
         parent::__construct($context, $uiComponentFactory, $components, $data);
     }
 
@@ -46,8 +43,8 @@ class Status extends \Magento\Ui\Component\Listing\Columns\Column
     public function getOptionText($value)
     {
         $status_option = [
-            0 => 'Inactive',
-            1 => 'Active'
+            0 => 'Disable',
+            1 => 'Enable'
         ];
         return $status_option[$value];
     }

@@ -12,6 +12,7 @@ class Save extends \Magento\Backend\App\Action
      * @var \Pankaj\Testimonial\Model\ImageUploader
      */
     protected $imageUploader;
+    protected $testimonial;
 
     /**
      * @param \Magento\Backend\App\Action\Context $context

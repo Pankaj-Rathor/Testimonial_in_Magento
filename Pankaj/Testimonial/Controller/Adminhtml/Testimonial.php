@@ -5,6 +5,7 @@ abstract class Testimonial extends \Magento\Backend\App\Action
 {
 
     protected $_coreRegistry;
+    protected $config;
     const ADMIN_RESOURCE = 'Pankaj_Testimonial::testimonial';
 
     /**

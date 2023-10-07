@@ -1,22 +1,22 @@
 <?php
-
 namespace Pankaj\Testimonial\Controller\Adminhtml\Testimonial;
 
-class Delete extends \Magento\Backend\App\Action
+class ChangeStatus extends \Pankaj\Testimonial\Controller\Adminhtml\Testimonial
 {
-
-    protected $testimonial;
     public function __construct(
-        \Magento\Backend\App\Action\Context $context,
-        \Pankaj\Testimonial\Model\Testimonial $testimonial
+        protected \Magento\Backend\App\Action\Context $context,
+        protected \Magento\Framework\Registry $coreRegistry,
+        protected \Pankaj\Testimonial\Model\Config $config,
+        protected \Pankaj\Testimonial\Model\Testimonial $testimonial
     ) {
         $this->testimonial = $testimonial;
-        parent::__construct($context);
+        parent::__construct($context, $coreRegistry, $config);
     }
+
     /**
-     * Delete action
+     * Index action
      *
-     * @return \Magento\Framework\Controller\ResultInterface
+     * @return \Magento\Framework\View\Result\Page
      */
     public function execute()
     {
@@ -27,9 +27,11 @@ class Delete extends \Magento\Backend\App\Action
         if ($id) {
             try {
                 // init model and delete
-                $this->testimonial->load($id)->delete();
+                $model = $this->testimonial->load($id);
+                
+                $model->setData('status',$this->updatedStatus($model))->save();
                 // display success message
-                $this->messageManager->addSuccessMessage(__('You deleted the Testimonial.'));
+                $this->messageManager->addSuccessMessage(__('You update the status of the testimonial.'));
                 // go to grid
                 return $resultRedirect->setPath('*/*/');
             } catch (\Exception $e) {
@@ -40,8 +42,13 @@ class Delete extends \Magento\Backend\App\Action
             }
         }
         // display error message
-        $this->messageManager->addErrorMessage(__('We can\'t find a Testimonial to delete.'));
+        $this->messageManager->addErrorMessage(__('We can\'t find a Testimonial to update the status.'));
         // go to grid
         return $resultRedirect->setPath('*/*/');
+    }
+
+    public function updatedStatus($testimonial)
+    {
+        return ($testimonial->getStatus() == 1)? 0 : 1;
     }
 }

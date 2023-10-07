@@ -41,8 +41,52 @@
 		<columnsControls name="columns_controls"/>
 		<filters name="listing_filters"/>
 		<paging name="listing_paging"/>
+		<massaction name="listing_massaction" component="Magento_Ui/js/grid/tree-massactions">
+			<action name="delete">
+				<settings>
+					<confirm>
+						<message translate="true">Are you sure you want to delete selected items?</message>
+						<title translate="true">Delete items</title>
+					</confirm>
+				<url path="testimonial/testimonial/massDelete"/>
+				<type>delete</type>
+				<label translate="true">Delete</label>
+				</settings>
+			</action>
+			<action name="status">
+                <settings>
+                    <type>status</type>
+                    <label translate="true">Change status</label>
+                    <actions>
+                        <action name="0">
+                            <type>enable</type>
+                            <label translate="true">Enable</label>
+                            <url path="testimonial/testimonial/masschangestatus">
+                                <param name="status">1</param>
+                            </url>
+                        </action>
+                        <action name="1">
+                            <type>disable</type>
+                            <label translate="true">Disable</label>
+                            <url path="testimonial/testimonial/masschangestatus">
+                                <param name="status">0</param>
+                            </url>
+                        </action>
+                    </actions>
+                </settings>
+            </action>
+    	</massaction>
 	</listingToolbar>
+	
 	<columns name="testimonial_columns">
+		<selectionsColumn name="ids" sortOrder="5">
+			<settings>
+				<indexField>entity_id</indexField>
+				<resizeEnabled>false</resizeEnabled>
+				<resizeDefaultWidth>55</resizeDefaultWidth>
+			</settings>
+		</selectionsColumn>
+
 		<column name="entity_id" sortOrder="10">
 			<settings>
 				<filter>text</filter>
@@ -92,6 +136,7 @@
 				<label translate="true">Status</label>
 			</settings>
 		</column>
+		
 		<column name="publish_date" sortOrder="90">
 			<settings>
 				<filter>text</filter>

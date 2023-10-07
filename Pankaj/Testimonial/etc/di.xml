@@ -15,4 +15,17 @@
         </arguments>
     </type>
 
+    <type name="Pankaj\Testimonial\Ui\Component\Listing\MassAction\StatusOptions">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="urlPath" xsi:type="string">testimonial/testimonial/masschangestatus</item>
+                <item name="paramName" xsi:type="string">status</item>
+                <item name="confirm" xsi:type="array">
+                    <item name="title" xsi:type="string" translatable="true">Change Status</item>
+                    <item name="message" xsi:type="string" translatable="true">Are you sure to change?</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
 </config>

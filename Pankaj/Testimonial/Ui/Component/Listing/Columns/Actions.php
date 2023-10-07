@@ -6,6 +6,7 @@ class Actions extends \Magento\Ui\Component\Listing\Columns\Column
 
     const URL_PATH_DELETE = 'testimonial/testimonial/delete';
     const URL_PATH_EDIT = 'testimonial/testimonial/edit';
+    const URL_PATH_UPDATE_STATUS = 'testimonial/testimonial/updateStatus';
     protected $urlBuilder;
 
     /**
@@ -37,7 +38,6 @@ class Actions extends \Magento\Ui\Component\Listing\Columns\Column
         if (isset($dataSource['data']['items'])) {
             foreach ($dataSource['data']['items'] as & $item) {
                 if (isset($item['entity_id'])) {
-                    $title = $item['title']; 
                     $item[$this->getData('name')] = [
                         'edit' => [
                             'href' => $this->urlBuilder->getUrl(
@@ -48,6 +48,19 @@ class Actions extends \Magento\Ui\Component\Listing\Columns\Column
                             ),
                             'label' => __('Edit')
                         ],
+                        'change_status' => [
+                            'href' => $this->urlBuilder->getUrl(
+                                static::URL_PATH_UPDATE_STATUS,
+                                [
+                                    'entity_id' => $item['entity_id']
+                                ]
+                            ),
+                            'label' => __('Change Status'),
+                            'confirm' => [
+                                'Title' => __('Change Status "%1"', $item['entity_id']), 
+                                'message' => __('Are you sure you want to change the status of "%1" record?', $item['entity_id'])
+                            ]
+                        ],
                         'delete' => [
                             'href' => $this->urlBuilder->getUrl(
                                 static::URL_PATH_DELETE,
@@ -57,8 +70,8 @@ class Actions extends \Magento\Ui\Component\Listing\Columns\Column
                             ),
                             'label' => __('Delete'),
                             'confirm' => [
-                                'title' => __('Delete "%1"', $title),
-                                'message' => __('Are you sure you want to delete a "%1" record?', $title)
+                                'title' => __('Delete "%1"', $item['entity_id']),
+                                'message' => __('Are you sure you want to delete a "%1" record?', $item['entity_id'])
                             ]
                         ]
                     ];
