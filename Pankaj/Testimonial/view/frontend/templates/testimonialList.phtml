@@ -1,5 +1,7 @@
 <?php
 /** @var \Pankaj\Testimonial\Block\Template $block */
+/** @var \Pankaj\Testimonial\ViewModel\TestimonialView $viewModel */
+$viewModel = $block->getViewModel();
 ?>
 
 <div class="testimonial">
@@ -7,7 +9,12 @@
 
 <?php foreach ($block->getTestimonialCollection() as $testimonial) : ?>  
 <div class="container">
-    <img src="bandmember.jpg" alt="Avatar" style="width:90px">
+    <?php if($testimonial->getImage()): ?>
+    <img src="<?= $viewModel->getImageUrl($testimonial->getImage()) ?>" alt="<?= $testimonial->getImage() ?>" width="90" >
+    <?php else: ?>
+    <img src="<?= $block->getViewFileUrl('Pankaj_Testimonial::images/default_user.png') ?>" alt="Default User Image" width="90">
+    <?php endif; ?>
+
     <p><span> <?= $block->getCustomerName($testimonial->getCustomerId())?>.</span> <?= $testimonial->getDesignation() ?>.</p>
     <p><?= $testimonial->getTitle() ?></p>
     <?= $testimonial->getContent() ?>

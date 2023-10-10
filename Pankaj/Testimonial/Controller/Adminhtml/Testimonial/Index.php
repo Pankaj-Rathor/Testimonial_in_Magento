@@ -5,7 +5,7 @@ class Index extends \Magento\Backend\App\Action
 {
     const ADMIN_RESOURCE = 'Pankaj_Testimonial::testimonial_list';
 
-    const PAGE_TITLE = 'Testimonial List';
+    const PAGE_TITLE = 'Testimonials';
 
     /**
      * @var \Magento\Framework\View\Result\PageFactory

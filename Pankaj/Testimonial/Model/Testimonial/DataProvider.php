@@ -62,7 +62,7 @@ class DataProvider extends AbstractDataProvider
         foreach ($items as $model) {
             $this->loadedData[$model->getId()] = $model->getData();
             if (!empty($this->loadedData[$model->getId()]['image'])) {
-                $this->loadedData[$model->getId()]['set_image'] = $this->urlInterface->getBaseUrl(['_type' => UrlInterface::URL_TYPE_MEDIA]).'bedzone/competition/image/'.$this->loadedData[$model->getId()]['image'];
+                $this->loadedData[$model->getId()]['set_image'] = $this->urlInterface->getBaseUrl(['_type' => UrlInterface::URL_TYPE_MEDIA]).'testimonial/image/'.$this->loadedData[$model->getId()]['image'];
             }
         }
         $data = $this->dataPersistor->get('pankaj_testimonial_testimonial');

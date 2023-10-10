@@ -1,0 +1,54 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$urlInterface = $objectManager->get(\Magento\Framework\UrlInterface::class);
+$entity_id = (int) $this->getRequest()->getParam('entity_id');
+$deleteImageUrl = '';
+if (!empty($entity_id)) {
+    $deleteImageUrl = $urlInterface->getUrl('testimonial/testimonial/deleteimage/id/'.$entity_id);    
+}
+?>
+<script>
+require(['jquery'], function ($) {
+    $(document).ready(function () {
+        var timer = 0;
+        <?php if(!empty($deleteImageUrl)) {?>
+        var setImage = '';
+        var getValueInterval = setInterval(function () {
+            $('input[name="set_image"]').parents('.admin__field').css('display','none');
+            var field = $('input[name="set_image"]');
+            let fieldValue = field.val();
+            console.log('Field Value:', fieldValue);
+            if (!isEmpty(fieldValue)) 
+            {
+                setImage = fieldValue;
+                $('input[name="set_image"]').parents('.admin__field').css('display','block');
+                let fieldControl = field.parent('.admin__field-control');
+                fieldControl.removeAttr('data-bind');
+                fieldControl.html('<div class="set-image"><img src="'+fieldValue+'" width="160"> <a href="<?=$deleteImageUrl?>" title="Delete" >Delete</a> </div>');
+                clearInterval(getValueInterval);
+            }
+            if (timer > 15000) 
+            {
+                clearInterval(getValueInterval);
+            }
+            timer += 1000;
+        }, 1000);
+        <?php }else{ ?>
+            var getValueInterval = setInterval(function () {
+                $('input[name="set_image"]').parents('.admin__field').css('display','none');
+            if (timer > 15000) 
+            {
+                clearInterval(getValueInterval);
+            }
+            timer += 1000;
+        }, 1000);
+        <?php } ?>
+
+    });
+
+    function isEmpty(value) {
+        return typeof value == 'string' && !value.trim() || typeof value == 'undefined' || value === null;
+    }
+
+});
+</script>

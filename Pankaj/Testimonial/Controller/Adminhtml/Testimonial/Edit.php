@@ -6,6 +6,8 @@ class Edit extends \Pankaj\Testimonial\Controller\Adminhtml\Testimonial
 
     protected $resultPageFactory;
 
+    protected $testimonial;
+
     /**
      * @param \Magento\Backend\App\Action\Context $context
      * @param \Magento\Framework\Registry $coreRegistry
@@ -15,9 +17,11 @@ class Edit extends \Pankaj\Testimonial\Controller\Adminhtml\Testimonial
         \Magento\Backend\App\Action\Context $context,
         \Magento\Framework\Registry $coreRegistry,
         \Magento\Framework\View\Result\PageFactory $resultPageFactory,
-        \Pankaj\Testimonial\Model\Config $config
+        \Pankaj\Testimonial\Model\Config $config,
+        \Pankaj\Testimonial\Model\Testimonial $testimonial,
     ) {
         $this->resultPageFactory = $resultPageFactory;
+        $this->testimonial = $testimonial;
         parent::__construct($context, $coreRegistry, $config);
     }
 
@@ -30,7 +34,7 @@ class Edit extends \Pankaj\Testimonial\Controller\Adminhtml\Testimonial
     {
         // 1. Get ID and create model
         $id = $this->getRequest()->getParam('entity_id');
-        $model = $this->_objectManager->create(\Pankaj\Testimonial\Model\Testimonial::class);
+        $model = $this->testimonial;
         
         // 2. Initial checking
         if ($id) {

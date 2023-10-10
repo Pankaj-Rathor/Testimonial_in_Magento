@@ -5,7 +5,11 @@
     </head>
     <body>
         <referenceContainer name="content">
-            <block class="Pankaj\Testimonial\Block\TestimonialList" name="testimonial_list" template="Pankaj_Testimonial::testimonialList.phtml" />
+            <block class="Pankaj\Testimonial\Block\TestimonialList" name="testimonial_list" template="Pankaj_Testimonial::testimonialList.phtml">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">Pankaj\Testimonial\ViewModel\TestimonialView</argument>
+                </arguments>
+            </block>
             <!-- <block class="Pankaj\Testimonial\Block\TestimonialList" name="testimonial_list" template="Pankaj_Testimonial::testimonialList.phtml" ifconfig="testimonial/general/enable" /> -->
         </referenceContainer>
     </body>

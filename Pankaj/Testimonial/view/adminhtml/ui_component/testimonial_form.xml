@@ -68,20 +68,39 @@
             </formElements>
         </field>
 
-		<field name="customer_id" formElement="select" sortOrder="20">
+		<field name="image" formElement="fileUploader" sortOrder="15">
 			<argument name="data" xsi:type="array">
 				<item name="config" xsi:type="array">
-					<item name="filterOptions" xsi:type="boolean">true</item>
-                    <item name="showFallbackReset" xsi:type="boolean">true</item>
+					<item name="source" xsi:type="string">Testimonial</item>
+					<item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>
+					<item name="previewTmpl" xsi:type="string">Magento_Catalog/image-preview</item>
+					<item name="uploaderConfig" xsi:type="array">
+						<item name="url" xsi:type="url" path="testimonial/testimonial/upload"/>
+					</item>
 				</item>
+				<item name="visible" xsi:type="boolean">true</item>
 			</argument>
 			<settings>
-				<dataType>text</dataType>
-				<label translate="true">Customer</label>
-				<dataScope>customer_id</dataScope>
+				<notice translate="true">Allowed file types: jpg, jpeg, png</notice>
+				<label translate="true">Image</label>
+				<dataScope>image</dataScope>
+				<dataType>string</dataType>
 				<validation>
 					<rule name="required-entry" xsi:type="boolean">true</rule>
 				</validation>
+			</settings>
+		</field>
+
+		<field name="set_image" formElement="input" sortOrder="20">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Testimonial</item>
+				</item>
+			</argument>
+			<settings>
+				<label translate="true">Image</label>
+				<dataScope>set_image</dataScope>
+				<dataType>text</dataType>
 			</settings>
 		</field>
 
@@ -155,7 +174,7 @@
 				<item name="config" xsi:type="array">
 					<item name="source" xsi:type="string">Testimonial</item>
 					<item name="wysiwygConfigData" xsi:type="array">
-						<item name="is_pagebuilder_enabled" xsi:type="boolean">true</item>
+						<item name="is_pagebuilder_enabled" xsi:type="boolean">false</item>
 					</item>
 				</item>
 			</argument>

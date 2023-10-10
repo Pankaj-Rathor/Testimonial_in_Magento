@@ -51,23 +51,26 @@ class Deleteimage extends \Magento\Backend\App\Action
                 return $resultRedirect->setPath('*/*/');
             }
             $imageName = $model->getImage();
-            $model->setData('image','');
             try {
                // Remove the image file
-                echo $fullImage = $this->mediaDirectory->getAbsolutePath(self::IMAGE_PATH).$imageName;
+                $fullImage = $this->mediaDirectory->getAbsolutePath(self::IMAGE_PATH).$imageName;
                 if ($this->file->isExists($fullImage)) {
                     $this->file->deleteFile($fullImage);
+                
+                    $model->setData('image','');
+                    if ($model->save()) 
+                    {
+                        $this->messageManager->addSuccessMessage(__('You removed the Testimonial Image.'));
+                        return $resultRedirect->setPath('*/*/edit', ['entity_id' => $model->getId()]);
+                    }
                 }
-                $model->save();
-                $this->messageManager->addSuccessMessage(__('You removed the Testimonial Image.'));
-                return $resultRedirect->setPath('*/*/edit', ['id' => $model->getId()]);
-
+                
             } catch (LocalizedException $e) {
                 $this->messageManager->addErrorMessage($e->getMessage());
             } catch (\Exception $e) {
                 $this->messageManager->addExceptionMessage($e, __('Something went wrong while remove the Testimonial Image.'));
             }        
-            return $resultRedirect->setPath('*/*/edit', ['id' => $this->getRequest()->getParam('id')]);
+            return $resultRedirect->setPath('*/*/edit', ['entity_id' => $this->getRequest()->getParam('id')]);
         }
         return $resultRedirect->setPath('*/*/');        
     }

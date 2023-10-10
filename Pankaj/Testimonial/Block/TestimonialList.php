@@ -4,7 +4,7 @@ namespace Pankaj\Testimonial\Block;
 class TestimonialList extends \Magento\Framework\View\Element\Template
 {
     protected $request;
-    protected $testimonialFactory;
+    protected $testimonial;
     protected $customerRepository;
     protected $config;
 
@@ -15,17 +15,17 @@ class TestimonialList extends \Magento\Framework\View\Element\Template
     public function __construct(
         \Magento\Framework\View\Element\Template\Context $context,
         \Magento\Framework\App\RequestInterface $request,
-        \Pankaj\Testimonial\Model\TestimonialFactory $testimonialFactory,
+        \Pankaj\Testimonial\Model\Testimonial $testimonial,
         \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository,
         \Pankaj\Testimonial\Model\Config $config,
         array $data = []
     ) {
         parent::__construct($context, $data);
         $this->request = $request;
-        $this->testimonialFactory = $testimonialFactory;
+        $this->testimonial = $testimonial;
         $this->customerRepository = $customerRepository;
         $this->config = $config;
-        $pageTitle = ($this->config->getPageTitle()) ? $this->config->getPageTitle() : 'Testimonial';
+        $pageTitle = ($this->config->getPageTitle()) ? $this->config->getPageTitle() : 'Testimonials';
         $this->setName($pageTitle);
     }
 
@@ -34,8 +34,7 @@ class TestimonialList extends \Magento\Framework\View\Element\Template
         $limit = ($this->request->getParam('limit')) ? $this->request->getParam('limit'):5;
         $page = ($this->request->getParam('p')) ? $this->request->getParam('p'):1;
 
-        return $this->testimonialFactory->create()
-            ->getCollection()
+        return $this->testimonial->getCollection()
             // ->addFieldToSelect('*')
             ->addFieldToFilter('status',1)
             ->setOrder('publish_date','DESC')

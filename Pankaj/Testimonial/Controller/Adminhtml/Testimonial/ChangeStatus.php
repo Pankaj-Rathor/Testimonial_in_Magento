@@ -1,23 +1,16 @@
 <?php
 namespace Pankaj\Testimonial\Controller\Adminhtml\Testimonial;
 
-class ChangeStatus extends \Pankaj\Testimonial\Controller\Adminhtml\Testimonial
+class ChangeStatus extends \Magento\Backend\App\Action
 {
     public function __construct(
         protected \Magento\Backend\App\Action\Context $context,
-        protected \Magento\Framework\Registry $coreRegistry,
-        protected \Pankaj\Testimonial\Model\Config $config,
         protected \Pankaj\Testimonial\Model\Testimonial $testimonial
     ) {
         $this->testimonial = $testimonial;
-        parent::__construct($context, $coreRegistry, $config);
+        parent::__construct($context);
     }
 
-    /**
-     * Index action
-     *
-     * @return \Magento\Framework\View\Result\Page
-     */
     public function execute()
     {
         /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */

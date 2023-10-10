@@ -6,7 +6,7 @@ use Magento\Backend\App\Action\Context;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Ui\Component\MassAction\Filter;
-use Pankaj\Testimonial\Model\TestimonialFactory;
+use Pankaj\Testimonial\Model\Testimonial;
 use Pankaj\Testimonial\Model\ResourceModel\Testimonial\CollectionFactory;
 
 class MassChangeStatus extends Action
@@ -14,20 +14,20 @@ class MassChangeStatus extends Action
     protected $filter;
     protected $resultPageFactory;
     protected $collectionFactory;
-    protected $testimonialFactory;
+    protected $testimonial;
 
     public function __construct(
         Context $context,
         PageFactory $resultPageFactory,
         Filter $filter,
-        TestimonialFactory $testimonialFactory,
+        Testimonial $testimonial,
         CollectionFactory $collectionFactory
     )
     {
         parent::__construct($context);
         $this->resultPageFactory = $resultPageFactory;
         $this->filter = $filter;
-        $this->testimonialFactory = $testimonialFactory;
+        $this->testimonial = $testimonial;
         $this->collectionFactory = $collectionFactory;
     }
 
@@ -37,7 +37,7 @@ class MassChangeStatus extends Action
             $collection = $this->filter->getCollection($this->collectionFactory->create());
             $updated = 0;
             foreach ($collection as $item) {
-                $model = $this->testimonialFactory->create()->load($item['entity_id']);
+                $model = $this->testimonial->load($item['entity_id']);
                 $model->setData('status', $this->getRequest()->getParam('status'));
                 $model->save();
                 $updated++;

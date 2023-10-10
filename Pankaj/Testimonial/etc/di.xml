@@ -28,4 +28,22 @@
         </arguments>
     </type>
 
+    <!-- <virtualType name="testimonialImageUploader" type="Magento\Catalog\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">testimonial/image</argument>
+            <argument name="basePath" xsi:type="string">testimonial/image</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+            <item name="jpg" xsi:type="string">jpg</item>
+            <item name="jpeg" xsi:type="string">jpeg</item>
+            <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Pankaj\Testimonial\Controller\Adminhtml\Testimonial\Uploader">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">testimonialImageUploader</argument>
+        </arguments>
+    </type> -->
+
 </config>

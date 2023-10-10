@@ -94,6 +94,14 @@
 				<label translate="true">ID</label>
 			</settings>
 		</column>
+		<column name="image" class="Pankaj\Testimonial\Ui\Component\Listing\Columns\Image" component="Magento_Ui/js/grid/columns/thumbnail" sortOrder="20">
+            <settings>
+                <altField>name</altField>
+                <hasPreview>1</hasPreview>
+                <label translate="true">Image</label>
+                <sortable>false</sortable>
+            </settings>
+        </column>
 		<column name="store_id" sortOrder="20">
 			<settings>
 				<filter>text</filter>
@@ -124,12 +132,12 @@
 				<label translate="true">Content</label>
 			</settings>
 		</column>
-		<column name="image" sortOrder="70">
+		<!-- <column name="image" sortOrder="70">
 			<settings>
 				<filter>text</filter>
 				<label translate="true">Image</label>
 			</settings>
-		</column>
+		</column> -->
 		<column name="status" class="Pankaj\Testimonial\Ui\Component\Listing\Columns\Status" sortOrder="80">
 			<settings>
 				<filter>text</filter>

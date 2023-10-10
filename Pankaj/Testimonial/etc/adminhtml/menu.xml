@@ -2,7 +2,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
         <add id="Pankaj_Testimonial::testimonial" title="Testimonial" translate="title" module="Pankaj_Testimonial" dependsOnModule="Pankaj_Testimonial" sortOrder="30" resource="Pankaj_Testimonial::testimonial"/>
-        <add id="Pankaj_Testimonial::testimonial_list" title="Testimonial List" translate="title" module="Pankaj_Testimonial" sortOrder="10" resource="Pankaj_Testimonial::testimonial_list" parent="Pankaj_Testimonial::testimonial" action="testimonial/testimonial/index"/>
+        <add id="Pankaj_Testimonial::testimonial_list" title="Testimonials" translate="title" module="Pankaj_Testimonial" sortOrder="10" resource="Pankaj_Testimonial::testimonial_list" parent="Pankaj_Testimonial::testimonial" action="testimonial/testimonial/index"/>
         <add id="Pankaj_Testimonial::config" title="Configuration" translate="title" module="Pankaj_Testimonial" sortOrder="10" resource="Pankaj_Testimonial::config" parent="Pankaj_Testimonial::testimonial" action="adminhtml/system_config/edit/section/testimonial"/>
     </menu>
 </config>
