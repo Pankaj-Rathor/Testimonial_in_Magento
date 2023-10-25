@@ -9,11 +9,8 @@ $viewModel = $block->getViewModel();
 
 <?php foreach ($block->getTestimonialCollection() as $testimonial) : ?>  
 <div class="container">
-    <?php if($testimonial->getImage()): ?>
     <img src="<?= $viewModel->getImageUrl($testimonial->getImage()) ?>" alt="<?= $testimonial->getImage() ?>" width="90" >
-    <?php else: ?>
-    <img src="<?= $block->getViewFileUrl('Pankaj_Testimonial::images/default_user.png') ?>" alt="Default User Image" width="90">
-    <?php endif; ?>
+    <!-- <img src="<?php //echo $block->getViewFileUrl('Pankaj_Testimonial::images/default_user.png') ?>" alt="Default User Image" width="90"> -->
 
     <p><span> <?= $block->getCustomerName($testimonial->getCustomerId())?>.</span> <?= $testimonial->getDesignation() ?>.</p>
     <p><?= $testimonial->getTitle() ?></p>
